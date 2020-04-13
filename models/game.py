@@ -22,5 +22,5 @@ class Game:
         self.next_build = []
         self.next_exploration_tier = 1
         # Blight
-        self.is_corrupted = false
+        self.is_corrupted = False
         self.remaining_blight = 0
