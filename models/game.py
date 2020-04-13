@@ -1,5 +1,5 @@
 from models.player import Player
-
+from starting_data import get_spirit
 class Game:
     def __init__(self, name, fear_stack):
         self.name = name
@@ -30,4 +30,4 @@ class Game:
     
     def add_player(self, player_name, spirit, color):
         if (not self.started):
-            self.players.append(Player(player_name, spirit, color))
+            self.players.append(Player(player_name, get_spirit(spirit), color))

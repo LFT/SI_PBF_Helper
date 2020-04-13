@@ -19,5 +19,11 @@ if __name__ == '__main__':
     if (args.command == "add_player"):
         game.add_player(*args.arguments)
         
+    # debugging output
+    for player in game.players:
+        print(player.name)
+        for power in player.powers_in_hand:
+            print(power.name)
+            
     with open(filename, "wb") as file:    
         pickle.dump(game, file)
