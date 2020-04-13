@@ -1,7 +1,10 @@
+from models.player import Player
+
 class Game:
     def __init__(self, name, fear_stack):
         self.name = name
         self.players = []
+        self.started = False
         # Todo: init with data
         # Power
         self.available_minor_powers = []
@@ -24,3 +27,7 @@ class Game:
         # Blight
         self.is_corrupted = False
         self.remaining_blight = 0
+    
+    def add_player(self, player_name, spirit, color):
+        if (not self.started):
+            self.players.append(Player(player_name, spirit, color))
