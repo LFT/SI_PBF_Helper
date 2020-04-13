@@ -19,7 +19,7 @@ class Player:
     def add_energy(self, energy_change):
         self.energy += energy_change
     
-    def add_innate(self, element_to_add):
+    def add_innate_element(self, element_to_add):
         if element_to_add in self.innate_elements:
             self.innate_elements[element_to_add] += 1
         else:
@@ -74,6 +74,9 @@ class Player:
             found_power = find_and_remove_power(search_string, self.fast_powers_played)
         if not found_power:
             found_power = find_and_remove_power(search_string, self.powers_in_discard)
+        # Innate just disappear when forgotten
+        if found_power in self.spirit.powers:
+            found_power = None
         return found_power
     
     def accelerate_power(self, search_string):
