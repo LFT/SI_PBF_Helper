@@ -2,6 +2,7 @@
 from models.spirit import Spirit
 from models.power import Power
 import constants
+import random
 
 _spirits = dict()
 _spirits["Lightning"] = Spirit("Lightning's Swift Strike", [
@@ -150,6 +151,7 @@ def init_game_power(game):
         Power("Teeming Rivers"                , 1, constants.slow, [constants.sun, constants.water, constants.plant, constants.animal]),
         Power("Spur on with Words of Fire"    , 1, constants.fast, [constants.sun, constants.fire, constants.air])
     ]
+    random.shuffle(game.available_minor_powers)
     game.available_major_powers = [
         Power("Accelerated Rot"                      , 4, constants.slow, [constants.sun, constants.water, constants.plant]),
         Power("Cleansing Floods"                     , 5, constants.slow, [constants.sun, constants.water]),
@@ -195,3 +197,4 @@ def init_game_power(game):
         Power("Twisted Flowers Murmur Ultimatums"    , 5, constants.slow, [constants.sun, constants.moon, constants.air, constants.earth, constants.plant]),
         Power("Unlock the Gates of Deepest Power"    , 4, constants.fast, [constants.sun, constants.moon, constants.fire, constants.air, constants.water, constants.earth, constants.plant, constants.animal])
     ]
+    random.shuffle(game.available_major_powers)

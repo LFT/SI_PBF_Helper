@@ -8,6 +8,7 @@ class Player:
         self.energy = 0
         self.energy_gain = spirit.base_energy_gain
         self.powers_in_hand = spirit.powers.copy()
+        self.power_choice = []
         self.slow_powers_played = []
         self.fast_powers_played = []
         self.powers_in_discard = []

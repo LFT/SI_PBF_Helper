@@ -30,6 +30,7 @@ if __name__ == '__main__':
           len(game.available_major_powers),
           len(game.discard_minor_powers),
           len(game.discard_major_power))
+    print(game.available_minor_powers[0].name)
             
     with open(filename, "wb") as file:    
         pickle.dump(game, file)
