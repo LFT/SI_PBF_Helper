@@ -23,8 +23,8 @@ if __name__ == '__main__':
         
     # debugging output
     for player in game.players:
-        print(player.name)
-        for power in player.powers_in_hand:
+        print(game.players[player].name)
+        for power in game.players[player].powers_in_hand:
             print(power.name)
     print(len(game.available_minor_powers),
           len(game.available_major_powers),

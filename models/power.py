@@ -4,4 +4,3 @@ class Power:
         self.cost = cost
         self.speed = speed
         self.elements = elements
-        self.accelerated = False

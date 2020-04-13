@@ -1,9 +1,10 @@
 from models.player import Player
 from starting_data import get_spirit
+
 class Game:
     def __init__(self, name, fear_stack):
         self.name = name
-        self.players = []
+        self.players = dict()
         self.started = False
         # Todo: init with data
         # Power
@@ -30,4 +31,4 @@ class Game:
     
     def add_player(self, player_name, spirit, color):
         if (not self.started):
-            self.players.append(Player(player_name, get_spirit(spirit), color))
+            self.players[player_name] = Player(player_name, get_spirit(spirit), color)
