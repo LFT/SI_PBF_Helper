@@ -1,6 +1,7 @@
 import argparse
 import pickle
 from models.game import Game
+from starting_data import init_game_power
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -12,6 +13,7 @@ if __name__ == '__main__':
     # initialising the Game object. Either a new one or loading the existing one.
     if (args.command == "init"):
         game = Game(args.name,"3/3/3")
+        init_game_power(game)
     else :
         with open(filename, "rb") as file:
             game = pickle.load(file)
@@ -24,6 +26,10 @@ if __name__ == '__main__':
         print(player.name)
         for power in player.powers_in_hand:
             print(power.name)
+    print(len(game.available_minor_powers),
+          len(game.available_major_powers),
+          len(game.discard_minor_powers),
+          len(game.discard_major_power))
             
     with open(filename, "wb") as file:    
         pickle.dump(game, file)
