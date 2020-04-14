@@ -32,3 +32,11 @@ class Game:
     def add_player(self, player_name, spirit, color):
         if (not self.started):
             self.players[player_name] = Player(player_name, get_spirit(spirit), color)
+            
+    def end_growth(self):
+        for player_name, player in self.players.items():
+            player.end_growth()
+            
+    def end_turn(self):
+        for player_name, player in self.players.items():
+            player.end_turn()
