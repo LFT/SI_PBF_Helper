@@ -8,4 +8,17 @@ python3 si_pbf_helper.py test growth
 python3 si_pbf_helper.py test element test1 water
 python3 si_pbf_helper.py test element test1 water
 
+python3 si_pbf_helper.py test play test1 shatter D3
+python3 si_pbf_helper.py test play test1 boon D3
+python3 si_pbf_helper.py test accelerate test1 shatter
+python3 si_pbf_helper.py test test
+
+python3 si_pbf_helper.py test turn
+python3 si_pbf_helper.py test test
+
+python3 si_pbf_helper.py test reclaim_one test1 shatter 
+python3 si_pbf_helper.py test test
+
+python3 si_pbf_helper.py test reclaim_all test1 
+python3 si_pbf_helper.py test forget test1 shatter
 python3 si_pbf_helper.py test test

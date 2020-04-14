@@ -87,7 +87,7 @@ def init_game_power(game):
         Power("Voracious Growth"              , 1, constants.slow, [constants.water, constants.plant], constants.minor),
         Power("Rouse the Trees and Stones"    , 1, constants.slow, [constants.fire, constants.earth, constants.plant], constants.minor),
         Power("Encompassing Ward"             , 1, constants.fast, [constants.sun, constants.water, constants.earth] , constants.minor),
-        Power("Song of Sanctity"              , 1, constants.slow, [constants.sun, constants.water, constants.plant] , constants.minor, constants.minor),
+        Power("Song of Sanctity"              , 1, constants.slow, [constants.sun, constants.water, constants.plant] , constants.minor),
         Power("Uncanny Melting"               , 1, constants.slow, [constants.sun, constants.moon, constants.water]  , constants.minor),
         Power("Shadows of the Burning Forest" , 0, constants.slow, [constants.moon, constants.fire, constants.plant] , constants.minor),
         Power("Steam Vents"                   , 1, constants.fast, [constants.fire, constants.air, constants.water, constants.earth], constants.minor),

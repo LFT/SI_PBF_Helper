@@ -1,5 +1,6 @@
 import argparse
 import pickle
+import constants
 from models.game import Game
 from starting_data import init_game_power
 
@@ -31,14 +32,36 @@ if __name__ == '__main__':
         player.add_energy(args.energy)
         
     # powers
-        #add_power_choice
-        #learn_power
-        #reclaim_all
-        #reclaim_one
-        #play_power
-        #forget_power
-        #accelerate_power
+    def add_power_choice(args):  
+        player = get_check_player(args.player_name)
         
+    def learn_power(args):
+        player = get_check_player(args.player_name)
+        powers_to_discard = player.learn_power(args.power_string)
+        
+    def reclaim_all(args):
+        player = get_check_player(args.player_name)
+        player.reclaim_all()
+        
+    def reclaim_one(args):
+        player = get_check_player(args.player_name)
+        player.reclaim_one(args.power_string)
+        
+    def play_power(args):
+        player = get_check_player(args.player_name)
+        player.play_power(args.power_string, args.target)
+        
+    def forget_power(args):
+        player = get_check_player(args.player_name)
+        forgotten_power = player.forget_power(args.power_string)
+        if forgotten_power.power_type == constants.minor:
+            game.discard_minor_powers.append(forgotten_power)
+        elif forgotten_power.power_type == constants.major:
+            game.discard_major_powers.append(forgotten_power)
+            
+    def accelerate_power(args):
+        player = get_check_player(args.player_name)
+        player.accelerate_power(args.power_string)
     # elements
     def add_innate_element(args):
         player = get_check_player(args.player_name)
@@ -50,8 +73,8 @@ if __name__ == '__main__':
             print(player.name, player.energy, player.innate_elements)
             print(len(player.powers_in_hand),
                   len(player.power_choice),
-                  len(player.slow_powers_played),
                   len(player.fast_powers_played),
+                  len(player.slow_powers_played),
                   len(player.powers_in_discard))
         print(len(game.available_minor_powers),
               len(game.available_major_powers),
@@ -91,30 +114,31 @@ if __name__ == '__main__':
     parser_power_choice.add_argument('player_name')
     parser_power_choice.add_argument('number_of_power')
     parser_power_choice.add_argument('type_of_power', type=int)
-    #parser_power_choice.set_defaults(func=power_choice)
+    parser_power_choice.set_defaults(func=add_power_choice)
     parser_learn_power = subparsers.add_parser('learn', help="Add a power to the player's hand")    
     parser_learn_power.add_argument('player_name')
     parser_learn_power.add_argument('power_string')
-    #parser_learn_power.set_defaults(func=learn_power)
+    parser_learn_power.set_defaults(func=learn_power)
     parser_reclaim_all = subparsers.add_parser('reclaim_all', help="Reclaim all of a player's powers")    
     parser_reclaim_all.add_argument('player_name')
-    #parser_reclaim_all.set_defaults(func=reclaim_all)
+    parser_reclaim_all.set_defaults(func=reclaim_all)
     parser_reclaim_one = subparsers.add_parser('reclaim_one', help="Reclaime one of a player's power")    
     parser_reclaim_one.add_argument('player_name')
     parser_reclaim_one.add_argument('power_string')
-    #parser_reclaim_one.set_defaults(func=reclaim_one)
+    parser_reclaim_one.set_defaults(func=reclaim_one)
     parser_forget_power = subparsers.add_parser('forget', help="Forget one of a player's power")    
     parser_forget_power.add_argument('player_name')
     parser_forget_power.add_argument('power_string')
-    #parser_forget_power.set_defaults(func=forget_power)
+    parser_forget_power.set_defaults(func=forget_power)
     parser_accelerate_power = subparsers.add_parser('accelerate', help="Accelerate one of a player's power")    
     parser_accelerate_power.add_argument('player_name')
     parser_accelerate_power.add_argument('power_string')
-    #parser_accelerate_power.set_defaults(func=accelerate_power)
+    parser_accelerate_power.set_defaults(func=accelerate_power)
     parser_play_power = subparsers.add_parser('play', help="Play one of a player's power")    
     parser_play_power.add_argument('player_name')
     parser_play_power.add_argument('power_string')
-    #parser_play_power.set_defaults(func=play_power)
+    parser_play_power.add_argument('target')
+    parser_play_power.set_defaults(func=play_power)
 
     args = parser.parse_args()
     filename = args.name + ".data"

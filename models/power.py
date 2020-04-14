@@ -6,3 +6,4 @@ class Power:
         self.speed = speed
         self.elements = elements
         self.power_type = power_type
+        self.target = ""

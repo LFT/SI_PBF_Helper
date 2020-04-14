@@ -34,7 +34,7 @@ class Player:
         self.power_choice.extend(power_choices)
         
     def learn_power(self, name):
-        found_power = find_and_remove_power(search_string, self.power_choice)
+        found_power = Player.find_and_remove_power(search_string, self.power_choice)
         if found_power:
             self.powers_in_hand.append(found_power)
             power_to_discard = self.power_choice.copy()
@@ -55,41 +55,39 @@ class Player:
         self.powers_in_discard = []
     
     def reclaim_one(self, search_string):
-        found_power = find_and_remove_power(search_string, self.powers_in_discard)
+        found_power = Player.find_and_remove_power(search_string, self.powers_in_discard)
         if found_power:
             self.powers_in_hand.append(found_power)
             
-    def play_power(self, search_string):
-        found_power = find_and_remove_power(search_string, self.powers_in_hand)
+    def play_power(self, search_string, target):
+        found_power = Player.find_and_remove_power(search_string, self.powers_in_hand)
         if found_power:
             self.energy -= found_power.cost
+            found_power.target = target
             if found_power.speed == constants.slow:
                 self.slow_powers_played.append(found_power)
             else:
                 self.fast_powers_played.append(found_power)
     
     def forget_power(self, search_string):
-        found_power = find_and_remove_power(search_string, self.powers_in_hand)
+        found_power = Player.find_and_remove_power(search_string, self.powers_in_hand)
         if not found_power:
-            found_power = find_and_remove_power(search_string, self.slow_powers_played)
+            found_power = Player.find_and_remove_power(search_string, self.slow_powers_played)
         if not found_power:
-            found_power = find_and_remove_power(search_string, self.fast_powers_played)
+            found_power = Player.find_and_remove_power(search_string, self.fast_powers_played)
         if not found_power:
-            found_power = find_and_remove_power(search_string, self.powers_in_discard)
-        # Innate just disappear when forgotten
-        if found_power in self.spirit.powers:
-            found_power = None
+            found_power = Player.find_and_remove_power(search_string, self.powers_in_discard)
         return found_power
     
     def accelerate_power(self, search_string):
-        found_power = find_and_remove_power(search_string, self.slow_powers_played)
+        found_power = Player.find_and_remove_power(search_string, self.slow_powers_played)
         if found_power:
             self.fast_powers_played.append(found_power)
         
     def find_and_remove_power(search_string, power_list):
         found_power = None
         for power in power_list:
-            if search_string in power.name:
+            if search_string.lower() in power.name.lower():
                 found_power = power
         if found_power:
             power_list.remove(found_power)
