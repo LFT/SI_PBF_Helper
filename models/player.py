@@ -31,14 +31,14 @@ class Player:
         self.energy_gain += gain_increase
         
     def add_power_choice(self, power_choices):
-        self.power_choice.extend(power_choices)
+        self.power_choice.append(power_choices)
         
-    def learn_power(self, name):
-        found_power = Player.find_and_remove_power(search_string, self.power_choice)
+    def learn_power(self, search_string):
+        found_power = Player.find_and_remove_power(search_string, self.power_choice[0])
         if found_power:
             self.powers_in_hand.append(found_power)
-            power_to_discard = self.power_choice.copy()
-            self.power_choice = []
+            power_to_discard = self.power_choice[0].copy()
+            del self.power_choice[0]
             return power_to_discard
             
     def end_growth(self):

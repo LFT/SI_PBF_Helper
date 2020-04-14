@@ -68,3 +68,10 @@ class Game:
             power_discard = self.discard_minor_powers
         power_discard.extend(return_powers)
         return return_powers
+    
+    def add_to_discard(self, powers_to_discard):
+        if powers_to_discard[0].power_type == constants.major:
+            power_discard = self.discard_major_powers
+        else:
+            power_discard = self.discard_minor_powers
+        power_discard.extend(powers_to_discard)

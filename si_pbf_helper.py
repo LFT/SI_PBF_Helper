@@ -37,10 +37,15 @@ if __name__ == '__main__':
     # powers
     def add_power_choice(args):  
         player = get_check_player(args.player_name)
+        powers_choice = game.get_x_powers_of_type(args.number_of_power, args.power_type)
+        player.add_power_choice(powers_choice)
+        for power in powers_choice:
+            print(power)
         
     def learn_power(args):
         player = get_check_player(args.player_name)
         powers_to_discard = player.learn_power(args.power_string)
+        game.add_to_discard(powers_to_discard)
         
     def reclaim_all(args):
         player = get_check_player(args.player_name)
