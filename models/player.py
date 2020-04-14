@@ -20,6 +20,8 @@ class Player:
         self.energy += energy_change
     
     def add_innate_element(self, element_to_add):
+        if not element_to_add in constants.elements:
+            raise ValueError("Element doesn't exist")
         if element_to_add in self.innate_elements:
             self.innate_elements[element_to_add] += 1
         else:

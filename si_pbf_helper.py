@@ -43,6 +43,21 @@ if __name__ == '__main__':
     def add_innate_element(args):
         player = get_check_player(args.player_name)
         player.add_innate_element(args.element_name)
+    
+    def debug_test(args):
+        # debugging output
+        for player_name, player in game.players.items():
+            print(player.name, player.energy, player.innate_elements)
+            print(len(player.powers_in_hand),
+                  len(player.power_choice),
+                  len(player.slow_powers_played),
+                  len(player.fast_powers_played),
+                  len(player.powers_in_discard))
+        print(len(game.available_minor_powers),
+              len(game.available_major_powers),
+              len(game.discard_minor_powers),
+              len(game.discard_major_power))
+        print(game.available_minor_powers[0].name)
         
         
     parser = argparse.ArgumentParser()
@@ -53,6 +68,8 @@ if __name__ == '__main__':
     parser_growth.set_defaults(func=end_growth)
     parser_turn = subparsers.add_parser('turn', help="End turn")
     parser_turn.set_defaults(func=end_turn)
+    parser_turn = subparsers.add_parser('test', help="Print test output")
+    parser_turn.set_defaults(func=debug_test)
     parser_add_player = subparsers.add_parser('player', help="Add a player to the game")    
     parser_add_player.add_argument('player_name')
     parser_add_player.add_argument('spirit')
@@ -109,17 +126,6 @@ if __name__ == '__main__':
         with open(filename, "rb") as file:
             game = pickle.load(file)
         args.func(args)
-    
-    # debugging output
-    for player_name, player in game.players.items():
-        print(player.name, player.energy)
-        for power in player.powers_in_hand:
-            print(power.name)
-    print(len(game.available_minor_powers),
-          len(game.available_major_powers),
-          len(game.discard_minor_powers),
-          len(game.discard_major_power))
-    print(game.available_minor_powers[0].name)
             
     with open(filename, "wb") as file:    
         pickle.dump(game, file)
