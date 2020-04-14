@@ -1,6 +1,10 @@
 slow = "slow" 
 fast = "fast"
 
+minor="minor"
+major="major"
+unique="unique"
+
 water = "water"
 earth = "earth"
 fire = "fire"
