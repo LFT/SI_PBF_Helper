@@ -22,3 +22,10 @@ python3 si_pbf_helper.py test test
 python3 si_pbf_helper.py test reclaim_all test1 
 python3 si_pbf_helper.py test forget test1 shatter
 python3 si_pbf_helper.py test test
+
+#python3 si_pbf_helper.py test draw_powers 30
+#python3 si_pbf_helper.py test test
+
+#python3 si_pbf_helper.py test draw_powers 40
+#python3 si_pbf_helper.py test test
+

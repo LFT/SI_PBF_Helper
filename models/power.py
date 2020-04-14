@@ -7,3 +7,6 @@ class Power:
         self.elements = elements
         self.power_type = power_type
         self.target = ""
+        
+    def __str__(self):
+        return "[url=" + constants.query_url+ "\"" + self.name + "\"]" + self.name + "[/url]"

@@ -16,3 +16,5 @@ animal = "animal"
 any_element = "any"
 
 elements = [water, earth, fire, air, sun, moon, plant, animal, any_element]
+
+query_url="https://sick.oberien.de/?query="

@@ -21,6 +21,9 @@ if __name__ == '__main__':
     def end_turn(args):
         game.end_turn()
         
+    def draw_powers_to_disard(args):
+        for power in game.draw_powers_to_disard(args.number_of_power, args.power_type):
+            print(power)
     # Commands used specifically for one player
     # Energy
     def increase_gain(args):
@@ -91,6 +94,10 @@ if __name__ == '__main__':
     parser_growth.set_defaults(func=end_growth)
     parser_turn = subparsers.add_parser('turn', help="End turn")
     parser_turn.set_defaults(func=end_turn)
+    parser_draw_powers = subparsers.add_parser('draw_powers', help="Draw powers")
+    parser_draw_powers.add_argument('number_of_power', type=int)
+    parser_draw_powers.add_argument('power_type', default="minor", nargs="?")
+    parser_draw_powers.set_defaults(func=draw_powers_to_disard)
     parser_turn = subparsers.add_parser('test', help="Print test output")
     parser_turn.set_defaults(func=debug_test)
     parser_add_player = subparsers.add_parser('player', help="Add a player to the game")    
@@ -112,8 +119,8 @@ if __name__ == '__main__':
     parser_add_innate_element.set_defaults(func=add_innate_element)
     parser_power_choice = subparsers.add_parser('choice', help="Add X powers to chose from to a player")    
     parser_power_choice.add_argument('player_name')
-    parser_power_choice.add_argument('number_of_power')
-    parser_power_choice.add_argument('type_of_power', type=int)
+    parser_power_choice.add_argument('power_type', default="minor", nargs="?")
+    parser_power_choice.add_argument('number_of_power', type=int, default=4, nargs="?")
     parser_power_choice.set_defaults(func=add_power_choice)
     parser_learn_power = subparsers.add_parser('learn', help="Add a power to the player's hand")    
     parser_learn_power.add_argument('player_name')
